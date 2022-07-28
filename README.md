@@ -6,7 +6,7 @@ An automatic scrolling carousel similar to how `ScrollView` is used
 
 ## Preview
 
-![image](https://github.com/HumorousGhost/Slideshow/blob/main/slideshow_preview.gif)
+![image](https://github.com/HumorousGhost/RepositoryPerview/blob/main/slideshow_preview.gif)
 
 ## Supported Platforms
 
