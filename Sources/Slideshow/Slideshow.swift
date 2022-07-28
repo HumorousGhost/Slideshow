@@ -42,6 +42,19 @@ public struct Slideshow<Data, ID, Content>: View where Data: RandomAccessCollect
 // MARK: - Initializers
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension Slideshow {
+    
+    /// Initializers
+    /// - Parameters:
+    ///   - data: Data
+    ///   - id: ID
+    ///   - index: active subview, default 0
+    ///   - spacing: default 10
+    ///   - headspace: default 10
+    ///   - sidesScaling: sides scale, default 0.8
+    ///   - isWrap: is cycle scroll, default false
+    ///   - autoScroll: is auto scroll, default .inactive
+    ///   - canMove: is manual scroll, default true
+    ///   - content: Content
     public init(_ data: Data,
                 id: KeyPath<Data.Element, ID>,
                 index: Binding<Int> = .constant(0),
@@ -59,6 +72,18 @@ extension Slideshow {
 
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension Slideshow where ID == Data.Element.ID, Data.Element: Identifiable {
+    
+    /// Initializers
+    /// - Parameters:
+    ///   - data: Data
+    ///   - index: active subview, default 0
+    ///   - spacing: default 10
+    ///   - headspace: default 10
+    ///   - sidesScaling: sides scale, default 0.8
+    ///   - isWrap: is cycle scroll, default false
+    ///   - autoScroll: is auto scroll, default .inactive
+    ///   - canMove: is manual scroll, default true
+    ///   - content: Content
     public init(_ data: Data,
                 index: Binding<Int> = .constant(0),
                 spacing: CGFloat = 10,
@@ -73,7 +98,7 @@ extension Slideshow where ID == Data.Element.ID, Data.Element: Identifiable {
     }
 }
 
-@available(iOS 14.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+@available(iOS 14.0, macOS 11.0, tvOS 13.0, watchOS 6.0, *)
 struct Slideshow_LibraryContent: LibraryContentProvider {
     let Datas = Array(repeating: _Item(color: .red), count: 3)
     @LibraryContentBuilder var views: [LibraryItem] {

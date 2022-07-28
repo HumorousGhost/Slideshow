@@ -12,8 +12,7 @@ import Combine
 class SlideshowViewModel<Data, ID>: ObservableObject where Data : RandomAccessCollection, ID : Hashable {
     
     /// external index
-    @Binding
-    private var index: Int
+    @Binding private var index: Int
     
     private let _data: Data
     private let _dataId: KeyPath<Data.Element, ID>
@@ -24,7 +23,15 @@ class SlideshowViewModel<Data, ID>: ObservableObject where Data : RandomAccessCo
     private let _autoScroll: SlideshowAutoScroll
     private let _canMove: Bool
     
-    init(_ data: Data, id: KeyPath<Data.Element, ID>, index: Binding<Int>, spacing: CGFloat, headspace: CGFloat, sidesScaling: CGFloat, isWrap: Bool, autoScroll: SlideshowAutoScroll, canMove: Bool) {
+    init(_ data: Data,
+         id: KeyPath<Data.Element, ID>,
+         index: Binding<Int>,
+         spacing: CGFloat,
+         headspace: CGFloat,
+         sidesScaling: CGFloat,
+         isWrap: Bool,
+         autoScroll: SlideshowAutoScroll,
+         canMove: Bool) {
         
         guard index.wrappedValue < data.count else {
             fatalError("The index should be less than the count of data ")
@@ -83,6 +90,7 @@ class SlideshowViewModel<Data, ID>: ObservableObject where Data : RandomAccessCo
     /// Ignores listen while dragging, and listen again after the drag is over
     /// Ignores listen when App will resign active, and listen again when it become active
     private var isTimerActive = true
+    
     func setTimerActive(_ active: Bool) {
         isTimerActive = active
     }
@@ -92,7 +100,14 @@ class SlideshowViewModel<Data, ID>: ObservableObject where Data : RandomAccessCo
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension SlideshowViewModel where ID == Data.Element.ID, Data.Element : Identifiable {
     
-    convenience init(_ data: Data, index: Binding<Int>, spacing: CGFloat, headspace: CGFloat, sidesScaling: CGFloat, isWrap: Bool, autoScroll: SlideshowAutoScroll, canMove: Bool) {
+    convenience init(_ data: Data,
+                     index: Binding<Int>,
+                     spacing: CGFloat,
+                     headspace: CGFloat,
+                     sidesScaling: CGFloat,
+                     isWrap: Bool,
+                     autoScroll: SlideshowAutoScroll,
+                     canMove: Bool) {
         self.init(data, id: \.id, index: index, spacing: spacing, headspace: headspace, sidesScaling: sidesScaling, isWrap: isWrap, autoScroll: autoScroll, canMove: canMove)
     }
 }
